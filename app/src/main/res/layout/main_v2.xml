@@ -17,7 +17,7 @@
             android:id="@+id/topAppBar"
             style="@style/Toolbar"
             app:menu="@menu/main_v2_toolbar"
-            app:title="@string/app_name" />
+            app:title="@string/app_name"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -53,7 +53,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_check_circle" />
+                    android:src="@drawable/ic_check_circle"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                         android:layout_margin="0dp"
                         android:text="N/A"
                         android:textColor="@color/whiteTextColor"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"/>
 
                     <TextView
                         android:id="@+id/mainV2_activationStatusDesc"
@@ -76,7 +76,7 @@
                         android:paddingTop="2dp"
                         android:text="Internal error"
                         android:textColor="@color/whiteTextColor"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"/>
 
                 </LinearLayout>
 
@@ -104,7 +104,7 @@
                     android:layout_marginBottom="16dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_info"
-                    app:tint="@color/themeColor" />
+                    app:tint="@color/themeColor"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -117,7 +117,7 @@
                         android:layout_margin="0dp"
                         android:text="@string/ModuleVersion"
                         android:textColor="@color/firstTextColor"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"/>
 
                     <TextView
                         android:id="@+id/mainTextViewVersion"
@@ -126,7 +126,7 @@
                         android:paddingTop="2dp"
                         android:text="N/A"
                         android:textColor="@color/secondTextColor"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -134,7 +134,7 @@
                         android:paddingTop="4dp"
                         android:text="@string/ModuleVersion_tip"
                         android:textColor="@color/thirdTextColor"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -160,7 +160,7 @@
                     android:layout_marginRight="16dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_settings"
-                    app:tint="@color/themeColor" />
+                    app:tint="@color/themeColor"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -173,7 +173,7 @@
                         android:layout_margin="0dp"
                         android:text="@string/ModuleSetting"
                         android:textColor="@color/firstTextColor"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -181,7 +181,7 @@
                         android:paddingTop="2dp"
                         android:text="@string/ModuleSetting_tip_1"
                         android:textColor="@color/secondTextColor"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -189,15 +189,7 @@
                         android:paddingTop="4dp"
                         android:text="@string/ModuleSetting_tip_2"
                         android:textColor="@color/thirdTextColor"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="4dp"
-                        android:text="@string/ModuleSetting_tip_3"
-                        android:textColor="@color/thirdTextColor"
-                        android:textSize="12sp" />
+                        android:textSize="14sp"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -219,39 +211,7 @@
                             android:paddingBottom="2dp"
                             android:text="@string/qq"
                             android:textColor="@color/themeColor"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/mainRelativeLayoutButtonOpenTIM"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:background="@color/nullColor"
-                            android:gravity="center"
-                            android:onClick="openModuleSettingForHost"
-                            android:paddingLeft="0dp"
-                            android:paddingTop="2dp"
-                            android:paddingRight="0dp"
-                            android:paddingBottom="2dp"
-                            android:text="@string/tim"
-                            android:textColor="@color/themeColor"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/mainRelativeLayoutButtonOpenQQLite"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:background="@color/nullColor"
-                            android:gravity="center"
-                            android:onClick="openModuleSettingForHost"
-                            android:paddingLeft="0dp"
-                            android:paddingTop="2dp"
-                            android:paddingRight="0dp"
-                            android:paddingBottom="2dp"
-                            android:text="@string/qq_lite"
-                            android:textColor="@color/themeColor"
-                            android:textSize="16sp" />
+                            android:textSize="16sp"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -282,7 +242,7 @@
                     android:layout_marginRight="16dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_github"
-                    app:tint="@color/secondTextColor" />
+                    app:tint="@color/secondTextColor"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -295,7 +255,7 @@
                         android:layout_margin="0dp"
                         android:text="@string/github"
                         android:textColor="@color/firstTextColor"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"/>
 
 
                 </LinearLayout>
@@ -325,7 +285,7 @@
                     android:layout_marginRight="16dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_help"
-                    app:tint="@color/secondTextColor" />
+                    app:tint="@color/secondTextColor"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -338,7 +298,7 @@
                         android:layout_margin="0dp"
                         android:text="@string/tip"
                         android:textColor="@color/firstTextColor"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"/>
 
                 </LinearLayout>
 
@@ -367,7 +327,7 @@
                     android:layout_marginRight="16dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_build"
-                    app:tint="@color/secondTextColor" />
+                    app:tint="@color/secondTextColor"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -380,7 +340,7 @@
                         android:layout_margin="0dp"
                         android:text="@string/BugCheck"
                         android:textColor="@color/firstTextColor"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"/>
 
                 </LinearLayout>
 

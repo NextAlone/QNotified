@@ -14,7 +14,7 @@ if (performSigning) {
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
-    ndkVersion "21.4.7075529"
+    ndkVersion "22.0.7026061"
     defaultConfig {
         applicationId "nil.nadph.qnotified"
         minSdkVersion 21
@@ -96,6 +96,7 @@ dependencies {
     compileOnly project(":compiler")
     kapt project(":compiler")
     compileOnly 'de.robv.android.xposed:api:82'
+    implementation "com.github.topjohnwu.libsu:core:2.5.1"
     implementation 'com.jaredrummler:colorpicker:1.1.0'
     implementation 'de.psdev.licensesdialog:licensesdialog:2.2.0'
     implementation 'io.noties.markwon:core:4.6.2'

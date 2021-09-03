@@ -19,15 +19,16 @@
  * <https://www.gnu.org/licenses/>
  * <https://github.com/ferredoxin/QNotified/blob/master/LICENSE.md>.
  */
-package ltd.nextalone.hook.testhook
 
-import ltd.nextalone.util.method
+package ltd.nextalone.hook.test
+
+import ltd.nextalone.util.logStart
 import ltd.nextalone.util.tryOrFalse
 import nil.nadph.qnotified.hook.CommonDelayableHook
 
-object TestCommonDelayable : CommonDelayableHook("na_test_base_delayable_kt") {
-
-    override fun initOnce() = tryOrFalse {
-        "".method
+//@FunctionEntry
+object TestHook : CommonDelayableHook("na_test_item", true) {
+    override fun initOnce(): Boolean = tryOrFalse {
+        logStart()
     }
 }

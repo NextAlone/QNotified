@@ -41,7 +41,7 @@ import static nil.nadph.qnotified.util.Utils.log;
 import static nil.nadph.qnotified.util.Utils.loge;
 
 //屏蔽Diy卡片
-@FunctionEntry
+//@FunctionEntry
 public class IgnoreDiyCard extends CommonDelayableHook {
 
     public static final IgnoreDiyCard INSTANCE = new IgnoreDiyCard();

@@ -267,7 +267,7 @@ public class InputButtonHook extends CommonDelayableHook {
             }
             Object arr = param.getResult();
             Class<?> clQQCustomMenuItem = arr.getClass().getComponentType();
-            Object item_copy = CustomMenu.createItem(clQQCustomMenuItem, R_ID_COPY_CODE, "复制代码");
+            Object item_copy = CustomMenu.createItem(clQQCustomMenuItem, R_ID_COPY_CODE, "代码");
             Object ret = Array.newInstance(clQQCustomMenuItem, Array.getLength(arr) + 1);
             Array.set(ret, 0, Array.get(arr, 0));
             //noinspection SuspiciousSystemArraycopy

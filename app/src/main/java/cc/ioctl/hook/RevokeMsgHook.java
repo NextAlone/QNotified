@@ -147,7 +147,7 @@ public class RevokeMsgHook extends CommonDelayableHook {
                 String revokerNick = ContactUtils.getTroopMemberNick(entityUin, revokerUin);
                 String greyMsg = "\"" + revokerNick + "\u202d\"";
                 if (msgObject != null) {
-                    greyMsg += "尝试撤回一条消息";
+                    greyMsg += "撤回一条消息";
                     String message = getMessageContentStripped(msgObject);
                     int msgtype = getMessageType(msgObject);
                     if (msgtype == -1000 /*text msg*/) {
@@ -156,7 +156,7 @@ public class RevokeMsgHook extends CommonDelayableHook {
                         }
                     }
                 } else {
-                    greyMsg += "撤回了一条消息(没收到)";
+                    greyMsg += "撤回了一条没收到的消息";
                 }
                 revokeGreyTip = createBareHighlightGreyTip(entityUin, istroop, revokerUin, time + 1,
                     greyMsg, newMsgUid, shmsgseq);
@@ -168,7 +168,7 @@ public class RevokeMsgHook extends CommonDelayableHook {
                 String authorNick = ContactUtils.getTroopMemberNick(entityUin, authorUin);
                 if (msgObject == null) {
                     String greyMsg =
-                        "\"" + revokerNick + "\u202d\"撤回了\"" + authorNick + "\u202d\"的消息(没收到)";
+                        "\"" + revokerNick + "\u202d\"撤回了\"" + authorNick + "\u202d\"没收到的消息";
                     revokeGreyTip = createBareHighlightGreyTip(entityUin, istroop, revokerUin,
                         time + 1, greyMsg, newMsgUid, shmsgseq);
                     addHightlightItem(revokeGreyTip, 1, 1 + revokerNick.length(),
@@ -178,7 +178,7 @@ public class RevokeMsgHook extends CommonDelayableHook {
                         createTroopMemberHighlightItem(authorUin));
                 } else {
                     String greyMsg =
-                        "\"" + revokerNick + "\u202d\"尝试撤回\"" + authorNick + "\u202d\"的消息";
+                        "\"" + revokerNick + "\u202d\"撤回\"" + authorNick + "\u202d\"的消息";
                     String message = getMessageContentStripped(msgObject);
                     int msgtype = getMessageType(msgObject);
                     if (msgtype == -1000 /*text msg*/) {
@@ -190,19 +190,19 @@ public class RevokeMsgHook extends CommonDelayableHook {
                         time + 1, greyMsg, newMsgUid, shmsgseq);
                     addHightlightItem(revokeGreyTip, 1, 1 + revokerNick.length(),
                         createTroopMemberHighlightItem(revokerUin));
-                    addHightlightItem(revokeGreyTip, 1 + revokerNick.length() + 1 + 6,
-                        1 + revokerNick.length() + 1 + 6 + authorNick.length(),
+                    addHightlightItem(revokeGreyTip, 1 + revokerNick.length() + 1 + 4,
+                        1 + revokerNick.length() + 1 + 4 + authorNick.length(),
                         createTroopMemberHighlightItem(authorUin));
                 }
             }
         } else {
             String greyMsg;
             if (msgObject == null) {
-                greyMsg = "对方撤回了一条消息(没收到)";
+                greyMsg = "对方撤回了一条没收到的消息";
             } else {
                 String message = getMessageContentStripped(msgObject);
                 int msgtype = getMessageType(msgObject);
-                greyMsg = "对方尝试撤回一条消息";
+                greyMsg = "对方撤回一条消息";
                 if (msgtype == -1000 /*text msg*/) {
                     if (!TextUtils.isEmpty(message)) {
                         greyMsg += ": " + message;

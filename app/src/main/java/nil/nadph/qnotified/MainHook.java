@@ -82,7 +82,7 @@ public class MainHook {
 
     public static void openProfileCard(Context ctx, long uin) {
         try {
-            Utils.logd("class="+ _AllInOne());
+//            Utils.logd("class="+ _AllInOne());
             Parcelable allInOne = (Parcelable) new_instance(
                 _AllInOne(), "" + uin, 35,
                 String.class, int.class);

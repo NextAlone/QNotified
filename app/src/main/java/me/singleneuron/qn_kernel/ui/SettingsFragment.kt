@@ -30,13 +30,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
 import nil.nadph.qnotified.ui.ViewBuilder.*
 import nil.nadph.qnotified.ui.widget.FunctionButton
-import nil.nadph.qnotified.util.Utils
 import org.ferredoxin.ferredoxin_ui.base.*
 
 class SettingsFragment : Fragment(), LifecycleOwner {
@@ -66,9 +64,9 @@ class SettingsFragment : Fragment(), LifecycleOwner {
     }
 
     private fun addViewInUiGroup(uiGroup: UiGroup, viewGroup: ViewGroup) {
-        Utils.logd("Adding: "+uiGroup.name +" = " + uiGroup.contains.toString())
+//        Utils.logd("Adding: "+uiGroup.name +" = " + uiGroup.contains.toString())
         for (uiDescription in uiGroup.contains.values) {
-            Utils.logd("Adding: $uiDescription")
+//            Utils.logd("Adding: $uiDescription")
             when {
                 uiDescription is UiCategory && uiDescription.contains.isNotEmpty() -> {
                     viewGroup.addView(largeSubtitle(activity, uiDescription.name))

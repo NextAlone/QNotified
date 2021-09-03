@@ -88,19 +88,20 @@ public class LicenseStatus {
 
 
     public static boolean isInsider() {
-        int currentStatus = ConfigManager.getDefaultConfig()
-            .getIntOrDefault(qn_user_auth_status, -1);
-        if (currentStatus == UserStatusConst.notExist) {
-            LicenseStatus.setUserCurrentStatus();
-            currentStatus = ConfigManager.getDefaultConfig()
-                .getIntOrDefault(qn_user_auth_status, -1);
-        }
-        long lastUpdate = ConfigManager.getDefaultConfig()
-            .getLongOrDefault(qn_user_auth_last_update, System.currentTimeMillis());
-        if (lastUpdate >= lastUpdate + 30 * 60 * 1000) {
-            LicenseStatus.setUserCurrentStatus();
-        }
-        return currentStatus == UserStatusConst.developer;
+        return true;
+//        int currentStatus = ConfigManager.getDefaultConfig()
+//            .getIntOrDefault(qn_user_auth_status, -1);
+//        if (currentStatus == UserStatusConst.notExist) {
+//            LicenseStatus.setUserCurrentStatus();
+//            currentStatus = ConfigManager.getDefaultConfig()
+//                .getIntOrDefault(qn_user_auth_status, -1);
+//        }
+//        long lastUpdate = ConfigManager.getDefaultConfig()
+//            .getLongOrDefault(qn_user_auth_last_update, System.currentTimeMillis());
+//        if (lastUpdate >= lastUpdate + 30 * 60 * 1000) {
+//            LicenseStatus.setUserCurrentStatus();
+//        }
+//        return currentStatus == UserStatusConst.developer;
     }
 
     public static boolean isBlacklisted() {

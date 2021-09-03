@@ -46,13 +46,13 @@ public abstract class CommonDelayableHook extends BaseDelayableHook {
         this(keyName, SyncUtils.PROC_MAIN, false, preconditions);
     }
 
-    protected CommonDelayableHook(@NonNull String keyName, int targetProcess,
-        @NonNull Step... preconditions) {
+    protected CommonDelayableHook(@NonNull String keyName, boolean defEnabled, @NonNull Step... preconditions) {        this(keyName, SyncUtils.PROC_ANY, defEnabled, preconditions); }
+
+    protected CommonDelayableHook(@NonNull String keyName, int targetProcess, @NonNull Step... preconditions) {
         this(keyName, targetProcess, false, preconditions);
     }
 
-    protected CommonDelayableHook(@NonNull String keyName, int targetProcess, boolean defEnabled,
-        @NonNull Step... preconditions) {
+    protected CommonDelayableHook(@NonNull String keyName, int targetProcess, boolean defEnabled, @NonNull Step... preconditions) {
         mKeyName = keyName;
         mTargetProcess = targetProcess;
         mDefaultEnabled = defEnabled;

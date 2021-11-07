@@ -40,7 +40,6 @@ import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
-import xyz.nextalone.util.SystemServiceUtils;
 import me.singleneuron.hook.CopyCardMsg;
 import me.singleneuron.qn_kernel.decorator.BaseInputButtonDecorator;
 import mqq.app.AppRuntime;
@@ -56,6 +55,7 @@ import nil.nadph.qnotified.util.Initiator;
 import nil.nadph.qnotified.util.LicenseStatus;
 import nil.nadph.qnotified.util.Toasts;
 import nil.nadph.qnotified.util.Utils;
+import xyz.nextalone.util.SystemServiceUtils;
 
 @FunctionEntry
 public class InputButtonHook extends CommonDelayableHook {
@@ -218,7 +218,7 @@ public class InputButtonHook extends CommonDelayableHook {
             }
             Object arr = param.getResult();
             Class<?> clQQCustomMenuItem = arr.getClass().getComponentType();
-            Object item_copy = CustomMenu.createItem(clQQCustomMenuItem, R_ID_COPY_CODE, "复制代码");
+            Object item_copy = CustomMenu.createItem(clQQCustomMenuItem, R_ID_COPY_CODE, "代码");
             Object ret = Array.newInstance(clQQCustomMenuItem, Array.getLength(arr) + 1);
             Array.set(ret, 0, Array.get(arr, 0));
             //noinspection SuspiciousSystemArraycopy

@@ -21,18 +21,29 @@
  */
 package cc.ioctl.hook;
 
+import static de.robv.android.xposed.XposedHelpers.callMethod;
+import static de.robv.android.xposed.XposedHelpers.setObjectField;
+import static nil.nadph.qnotified.util.Initiator._C2CMessageProcessor;
+import static nil.nadph.qnotified.util.Initiator._QQMessageFacade;
+import static nil.nadph.qnotified.util.ReflexUtil.iget_object_or_null;
+import static nil.nadph.qnotified.util.ReflexUtil.invoke_static_declared_ordinal_modifier;
+import static nil.nadph.qnotified.util.ReflexUtil.invoke_virtual;
+import static nil.nadph.qnotified.util.ReflexUtil.invoke_virtual_declared_ordinal;
+import static nil.nadph.qnotified.util.ReflexUtil.invoke_virtual_declared_ordinal_modifier;
+import static nil.nadph.qnotified.util.Utils.getLongAccountUin;
+import static nil.nadph.qnotified.util.Utils.isCallingFrom;
+import static nil.nadph.qnotified.util.Utils.log;
+
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
-
+import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedBridge;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XposedBridge;
 import me.singleneuron.qn_kernel.data.HostInfo;
 import nil.nadph.qnotified.SyncUtils;
 import nil.nadph.qnotified.base.annotation.FunctionEntry;
@@ -44,13 +55,6 @@ import nil.nadph.qnotified.util.DexKit;
 import nil.nadph.qnotified.util.LicenseStatus;
 import nil.nadph.qnotified.util.QQVersion;
 import nil.nadph.qnotified.util.Utils;
-
-import static de.robv.android.xposed.XposedHelpers.callMethod;
-import static de.robv.android.xposed.XposedHelpers.setObjectField;
-import static nil.nadph.qnotified.util.Initiator._C2CMessageProcessor;
-import static nil.nadph.qnotified.util.Initiator._QQMessageFacade;
-import static nil.nadph.qnotified.util.ReflexUtil.*;
-import static nil.nadph.qnotified.util.Utils.*;
 
 /**
  * @author fkzhang Created by fkzhang on 1/20/2016. Changes by cinit: 2020/03/08 Sun.20:33 Minor
@@ -147,7 +151,7 @@ public class RevokeMsgHook extends CommonDelayableHook {
                 String revokerNick = ContactUtils.getTroopMemberNick(entityUin, revokerUin);
                 String greyMsg = "\"" + revokerNick + "\u202d\"";
                 if (msgObject != null) {
-                    greyMsg += "尝试撤回一条消息";
+                    greyMsg += "撤回一条消息";
                     String message = getMessageContentStripped(msgObject);
                     int msgtype = getMessageType(msgObject);
                     if (msgtype == -1000 /*text msg*/) {
@@ -156,7 +160,7 @@ public class RevokeMsgHook extends CommonDelayableHook {
                         }
                     }
                 } else {
-                    greyMsg += "撤回了一条消息(没收到)";
+                    greyMsg += "撤回了一条没收到的消息";
                 }
                 revokeGreyTip = createBareHighlightGreyTip(entityUin, istroop, revokerUin, time + 1,
                     greyMsg, newMsgUid, shmsgseq);
@@ -168,7 +172,7 @@ public class RevokeMsgHook extends CommonDelayableHook {
                 String authorNick = ContactUtils.getTroopMemberNick(entityUin, authorUin);
                 if (msgObject == null) {
                     String greyMsg =
-                        "\"" + revokerNick + "\u202d\"撤回了\"" + authorNick + "\u202d\"的消息(没收到)";
+                        "\"" + revokerNick + "\u202d\"撤回了\"" + authorNick + "\u202d\"没收到的消息";
                     revokeGreyTip = createBareHighlightGreyTip(entityUin, istroop, revokerUin,
                         time + 1, greyMsg, newMsgUid, shmsgseq);
                     addHightlightItem(revokeGreyTip, 1, 1 + revokerNick.length(),
@@ -178,7 +182,7 @@ public class RevokeMsgHook extends CommonDelayableHook {
                         createTroopMemberHighlightItem(authorUin));
                 } else {
                     String greyMsg =
-                        "\"" + revokerNick + "\u202d\"尝试撤回\"" + authorNick + "\u202d\"的消息";
+                        "\"" + revokerNick + "\u202d\"撤回\"" + authorNick + "\u202d\"的消息";
                     String message = getMessageContentStripped(msgObject);
                     int msgtype = getMessageType(msgObject);
                     if (msgtype == -1000 /*text msg*/) {
@@ -190,19 +194,19 @@ public class RevokeMsgHook extends CommonDelayableHook {
                         time + 1, greyMsg, newMsgUid, shmsgseq);
                     addHightlightItem(revokeGreyTip, 1, 1 + revokerNick.length(),
                         createTroopMemberHighlightItem(revokerUin));
-                    addHightlightItem(revokeGreyTip, 1 + revokerNick.length() + 1 + 6,
-                        1 + revokerNick.length() + 1 + 6 + authorNick.length(),
+                    addHightlightItem(revokeGreyTip, 1 + revokerNick.length() + 1 + 4,
+                        1 + revokerNick.length() + 1 + 4 + authorNick.length(),
                         createTroopMemberHighlightItem(authorUin));
                 }
             }
         } else {
             String greyMsg;
             if (msgObject == null) {
-                greyMsg = "对方撤回了一条消息(没收到)";
+                greyMsg = "对方撤回了一条没收到的消息";
             } else {
                 String message = getMessageContentStripped(msgObject);
                 int msgtype = getMessageType(msgObject);
-                greyMsg = "对方尝试撤回一条消息";
+                greyMsg = "对方撤回一条消息";
                 if (msgtype == -1000 /*text msg*/) {
                     if (!TextUtils.isEmpty(message)) {
                         greyMsg += ": " + message;

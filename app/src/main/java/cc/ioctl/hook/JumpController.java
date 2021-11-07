@@ -57,7 +57,8 @@ public class JumpController extends CommonDelayableHook {
     public static final String DEFAULT_RULES = "A,P:me.singleneuron.locknotification;\n" +
         "A,P:cn.nexus6p.QQMusicNotify;\n" +
         "A,A:android.media.action.VIDEO_CAPTURE;\n" +
-        "A,P:nil.nadph.qnotified;\n";
+        "A,P:nil.nadph.qnotified;\n" +
+        "A,P:com.android.chrome;\n";
     public static final int JMP_DEFAULT = 0;
     public static final int JMP_ALLOW = 1;
     public static final int JMP_REJECT = 2;

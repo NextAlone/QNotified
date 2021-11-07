@@ -57,9 +57,17 @@ import nil.nadph.qnotified.util.MainProcess;
 import nil.nadph.qnotified.util.Utils;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-import static nil.nadph.qnotified.util.Initiator.*;
-import static nil.nadph.qnotified.util.ReflexUtil.*;
-import static nil.nadph.qnotified.util.Utils.*;
+import static nil.nadph.qnotified.util.Initiator._AllInOne;
+import static nil.nadph.qnotified.util.Initiator._FriendProfileCardActivity;
+import static nil.nadph.qnotified.util.Initiator._StartupDirector;
+import static nil.nadph.qnotified.util.Initiator.load;
+import static nil.nadph.qnotified.util.ReflexUtil.getFirstNSFByType;
+import static nil.nadph.qnotified.util.ReflexUtil.iget_object_or_null;
+import static nil.nadph.qnotified.util.ReflexUtil.new_instance;
+import static nil.nadph.qnotified.util.Utils.getLongAccountUin;
+import static nil.nadph.qnotified.util.Utils.isAlphaVersion;
+import static nil.nadph.qnotified.util.Utils.log;
+import static nil.nadph.qnotified.util.Utils.loge;
 
 /*TitleKit:Lcom/tencent/mobileqq/widget/navbar/NavBarCommon*/
 
@@ -82,7 +90,7 @@ public class MainHook {
 
     public static void openProfileCard(Context ctx, long uin) {
         try {
-            Utils.logd("class="+ _AllInOne());
+//            Utils.logd("class="+ _AllInOne());
             Parcelable allInOne = (Parcelable) new_instance(
                 _AllInOne(), "" + uin, 35,
                 String.class, int.class);

@@ -44,11 +44,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
-import java.io.IOException;
-import java.io.InputStream;
+import com.topjohnwu.superuser.ShellUtils;
 import java.util.Arrays;
 import java.util.Date;
-
 import me.ketal.ui.activity.QFileShareToIpadActivity;
 import me.ketal.util.ComponentUtilKt;
 import me.singleneuron.util.HookStatue;
@@ -62,9 +60,9 @@ import nil.nadph.qnotified.util.Natives;
 import nil.nadph.qnotified.util.UiThread;
 import nil.nadph.qnotified.util.Utils;
 
+
 public class ConfigV2Activity extends AppCompatActivity {
 
-    private static final String ALIAS_ACTIVITY_NAME = "nil.nadph.qnotified.activity.ConfigV2ActivityAlias";
     private final Looper mainLooper = Looper.getMainLooper();
     private String dbgInfo = "";
     private MainV2Binding mainV2Binding = null;
@@ -99,12 +97,13 @@ public class ConfigV2Activity extends AppCompatActivity {
             delta = System.currentTimeMillis() - delta;
             dbgInfo += "\nBuild Time: " + (ts > 0 ? new Date(ts).toString() : "unknown") + ", " +
                 "delta=" + delta + "ms\n" +
-                "SUPPORTED_ABIS=" + Arrays.toString(Build.SUPPORTED_ABIS) + "\npageSize=" + Natives
-                .getpagesize();
+                "SUPPORTED_ABIS=" + Arrays.toString(Build.SUPPORTED_ABIS) + "\npageSize="
+                + Natives.getpagesize();
         } catch (Throwable e) {
             dbgInfo += "\n" + e.toString();
         }
-        mainV2Binding = MainV2Binding.inflate(LayoutInflater.from(this));
+        mainV2Binding = nil.nadph.qnotified.databinding.MainV2Binding.inflate(
+            LayoutInflater.from(this));
         setContentView(mainV2Binding.getRoot());
         LinearLayout frameStatus = mainV2Binding.mainV2ActivationStatusLinearLayout;
         ImageView frameIcon = mainV2Binding.mainV2ActivationStatusIcon;
@@ -162,26 +161,14 @@ public class ConfigV2Activity extends AppCompatActivity {
                 pkg = HookEntry.PACKAGE_NAME_QQ;
                 break;
             }
-            case R.id.mainRelativeLayoutButtonOpenTIM: {
-                pkg = HookEntry.PACKAGE_NAME_TIM;
-                break;
-            }
-            case R.id.mainRelativeLayoutButtonOpenQQLite: {
-                pkg = HookEntry.PACKAGE_NAME_QQ_LITE;
-                break;
-            }
             default: {
             }
         }
         if (pkg != null) {
-            Intent intent = new Intent();
-            intent
-                .setComponent(new ComponentName(pkg, "com.tencent.mobileqq.activity.JumpActivity"));
-            intent.setAction(Intent.ACTION_VIEW);
-            intent.putExtra(JumpActivityEntryHook.JUMP_ACTION_CMD,
-                JumpActivityEntryHook.JUMP_ACTION_SETTING_ACTIVITY);
             try {
-                startActivity(intent);
+                ShellUtils.fastCmd("pkill -f com.tencent.mobileqq");
+                ShellUtils.fastCmd(
+                    "am start -n com.tencent.mobileqq/com.tencent.mobileqq.activity.SplashActivity");
             } catch (ActivityNotFoundException e) {
                 new AlertDialog.Builder(this).setTitle("出错啦")
                     .setMessage("拉起模块设置失败, 请确认 " + pkg + " 已安装并启用(没有被关冰箱或被冻结停用)\n" + e.toString())
@@ -250,6 +237,8 @@ public class ConfigV2Activity extends AppCompatActivity {
             }
         }
     }
+
+    private static final String ALIAS_ACTIVITY_NAME = "nil.nadph.qnotified.activity.ConfigV2ActivityAlias";
 
     @Override
     protected void onResume() {

@@ -189,15 +189,7 @@
                         android:paddingTop="4dp"
                         android:text="@string/ModuleSetting_tip_2"
                         android:textColor="@color/thirdTextColor"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="4dp"
-                        android:text="@string/ModuleSetting_tip_3"
-                        android:textColor="@color/thirdTextColor"
-                        android:textSize="12sp" />
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -218,38 +210,6 @@
                             android:paddingRight="0dp"
                             android:paddingBottom="2dp"
                             android:text="@string/qq"
-                            android:textColor="@color/themeColor"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/mainRelativeLayoutButtonOpenTIM"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:background="@color/nullColor"
-                            android:gravity="center"
-                            android:onClick="openModuleSettingForHost"
-                            android:paddingLeft="0dp"
-                            android:paddingTop="2dp"
-                            android:paddingRight="0dp"
-                            android:paddingBottom="2dp"
-                            android:text="@string/tim"
-                            android:textColor="@color/themeColor"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/mainRelativeLayoutButtonOpenQQLite"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="24dp"
-                            android:background="@color/nullColor"
-                            android:gravity="center"
-                            android:onClick="openModuleSettingForHost"
-                            android:paddingLeft="0dp"
-                            android:paddingTop="2dp"
-                            android:paddingRight="0dp"
-                            android:paddingBottom="2dp"
-                            android:text="@string/qq_lite"
                             android:textColor="@color/themeColor"
                             android:textSize="16sp" />
                     </LinearLayout>

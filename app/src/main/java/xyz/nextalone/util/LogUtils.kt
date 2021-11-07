@@ -46,15 +46,3 @@ internal fun <T : BaseDelayableHook> T.logMethod(method: Method?) {
     logd("declaringClass", method?.declaringClass, "return", method?.returnType)
     logd("param", *method?.parameterTypes ?: arrayOf("null"))
 }
-
-internal fun <T : BaseDelayableHook> T.logStart() {
-    logd("$this: Start")
-}
-
-internal fun <T : BaseDelayableHook> T.logBefore(msg: String? = "") {
-    logd("$this: Before, $msg")
-}
-
-internal fun <T : BaseDelayableHook> T.logAfter(msg: String? = "") {
-    logd("$this: After, $msg")
-}
